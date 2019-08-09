@@ -7,7 +7,7 @@ const testUser = {
   firstname: 'test',
   lastname: 'test',
   email: 'test@test.com',
-  password: 'tester',
+  password: 'testee',
   profileURL: 'https://testimage.com/testimage.jpeg',
 };
 

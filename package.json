@@ -9,7 +9,7 @@
     "start": "cross-env NODE_ENV=production node ./index.js",
     "dev:server": "nodemon node ./index.js",
     "pretest": "npx sequelize-cli db:migrate:undo:all --env=test && npx sequelize-cli db:migrate --env=test",
-    "test": "cross-env NODE_ENV=test jest --verbose"
+    "test": "cross-env NODE_ENV=test jest --verbose --forceExit"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.0",
