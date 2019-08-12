@@ -7,6 +7,6 @@ module.exports = reqSchema => (req, res, next) => {
         error: err.details.map(m => m.message.replace(/[^a-zA-Z0-9 ]/g, '')),
       });
     }
-    next();
+    return next();
   });
 };
