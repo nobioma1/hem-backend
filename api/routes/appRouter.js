@@ -1,6 +1,9 @@
 const appRouter = require('express').Router();
-const userRouter = require('../Users/userRouter');
+const { authUser, userActive } = require('../Auth/authMiddleware');
+const userRouter = require('../users/userRouter');
+const workspaceRouter = require('../workspace/workspaceRouter');
 
 appRouter.use('/', userRouter);
+appRouter.use('/workspace', authUser, userActive, workspaceRouter);
 
 module.exports = appRouter;
