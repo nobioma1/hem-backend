@@ -4,9 +4,10 @@ const server = require('./server');
 const request = supertest(server);
 
 describe('Server', () => {
-  it('Should GET / base route', async () => {
+  it('Should GET / base route', async (done) => {
     const res = await request.get('/');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ message: 'Welcome to Pengin API' });
+    done();
   });
 });
