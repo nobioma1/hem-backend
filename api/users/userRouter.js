@@ -3,7 +3,7 @@ const user = require('./userController');
 const { schemaValidator: validate } = require('../../helpers');
 const schema = require('./userSchema');
 const userMiddleware = require('./userMiddleware');
-const { authUser } = require('../Auth/authMiddleware');
+const { authUser } = require('../auth/authMiddleware');
 
 userRouter.post(
   '/register',
