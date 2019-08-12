@@ -1,9 +1,42 @@
 const userRouter = require('express').Router();
-const { createUser } = require('./userController');
-const validate = require('../../helpers/schemaValidator');
-const userSchema = require('./userSchema');
-const { userExists } = require('./userMiddleware');
+const user = require('./userController');
+const { schemaValidator: validate } = require('../../helpers');
+const schema = require('./userSchema');
+const userMiddleware = require('./userMiddleware');
+const { authUser } = require('../Auth/authMiddleware');
 
-userRouter.post('/register', validate(userSchema), userExists, createUser);
+userRouter.post(
+  '/register',
+  validate(schema.register),
+  userMiddleware.userExists,
+  user.createUser,
+);
+
+userRouter.get(
+  '/profile/:id',
+  authUser,
+  userMiddleware.validateId,
+  user.getUser,
+);
+
+userRouter.post(
+  '/login',
+  validate(schema.login),
+  userMiddleware.validateEmail,
+  user.loginUser,
+);
+userRouter.post(
+  '/verify',
+  authUser,
+  validate(schema.token),
+  userMiddleware.tokenExists,
+  user.verifyUser,
+);
+userRouter.post(
+  '/resend-verification',
+  authUser,
+  userMiddleware.checkStatus,
+  user.resendVerification,
+);
 
 module.exports = userRouter;
