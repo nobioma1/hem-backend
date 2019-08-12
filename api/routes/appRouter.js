@@ -1,5 +1,5 @@
 const appRouter = require('express').Router();
-const { authUser, userActive } = require('../Auth/authMiddleware');
+const { authUser, userActive } = require('../auth/authMiddleware');
 const userRouter = require('../users/userRouter');
 const workspaceRouter = require('../workspace/workspaceRouter');
 
