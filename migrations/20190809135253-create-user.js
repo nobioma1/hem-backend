@@ -19,12 +19,15 @@ module.exports = {
       allowNull: false,
       unique: true,
     },
-    profileURL: {
-      type: Sequelize.STRING,
-    },
     password: {
       type: Sequelize.STRING,
       allowNull: false,
+    },
+    profileURL: {
+      type: Sequelize.STRING,
+    },
+    isActive: {
+      type: Sequelize.BOOLEAN,
     },
     createdAt: {
       allowNull: false,
