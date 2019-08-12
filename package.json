@@ -13,7 +13,7 @@
     "start": "cross-env NODE_ENV=production node ./index.js",
     "dev:server": "DEBUG=http nodemon node ./index.js",
     "pretest": "yarn db:undo --env=test && yarn db:migrate --env=test && yarn db:seed --env=test",
-    "test": "cross-env NODE_ENV=test jest --verbose"
+    "test": "cross-env NODE_ENV=test jest --verbose --forceExit"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.0",
