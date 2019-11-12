@@ -9,7 +9,7 @@ const workspace = {
 };
 
 describe('Workspace', () => {
-  it('Should Create New Workspace', async (done) => {
+  it('Should Create New Workspace', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });
@@ -25,7 +25,7 @@ describe('Workspace', () => {
     done();
   });
 
-  it('Should validate workspace body', async (done) => {
+  it('Should validate workspace body', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });
@@ -37,7 +37,7 @@ describe('Workspace', () => {
     done();
   });
 
-  it('Should not create duplicate workspace', async (done) => {
+  it('Should not create duplicate workspace', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });
@@ -50,7 +50,7 @@ describe('Workspace', () => {
     done();
   });
 
-  it('Should get existing Workspace', async (done) => {
+  it('Should get existing Workspace', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });
@@ -65,7 +65,7 @@ describe('Workspace', () => {
     done();
   });
 
-  it('Should return error if user is not existing', async (done) => {
+  it('Should return error if user is not existing', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });
@@ -77,7 +77,7 @@ describe('Workspace', () => {
     done();
   });
 
-  it('Should update existing workspace', async (done) => {
+  it('Should update existing workspace', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });
@@ -92,7 +92,7 @@ describe('Workspace', () => {
     done();
   });
 
-  it('Should delete workspace', async (done) => {
+  it('Should delete workspace', async done => {
     const { body } = await request
       .post('/api/v1/login')
       .send({ email: 'john@demo.com', password: 'demo' });

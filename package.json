@@ -11,9 +11,10 @@
     "db:seed": "npx sequelize-cli db:seed:all",
     "db:reset": "yarn db:undo && yarn db:migrate && yarn db:seed",
     "start": "cross-env NODE_ENV=production node ./index.js",
-    "dev:server": "DEBUG=http nodemon node ./index.js",
+    "dev:server": "nodemon node ./index.js",
     "pretest": "yarn db:undo --env=test && yarn db:migrate --env=test && yarn db:seed --env=test",
-    "test": "cross-env NODE_ENV=test jest --verbose --forceExit"
+    "test": "cross-env NODE_ENV=test jest --verbose --forceExit",
+    "lint": "eslint --fix . && echo 'Lint complete.'"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.0",
@@ -34,9 +35,12 @@
     "cross-env": "^5.2.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
+    "prettier": "^1.19.1",
     "supertest": "^4.0.2"
   }
 }

@@ -15,7 +15,7 @@ module.exports = {
   userActive: async (req, res, next) => {
     const { id } = req.authUser;
     try {
-      const { isActive } = await User.findOne({ where: { id } });      
+      const { isActive } = await User.findOne({ where: { id } });
       if (!isActive) {
         throw new Error();
       }

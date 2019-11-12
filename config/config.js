@@ -3,15 +3,15 @@ require('dotenv').config();
 module.exports = {
   development: {
     username: 'postgres',
-    password: null,
-    database: 'pengin_dev',
+    password: 'admin',
+    database: 'hem_dev',
     host: '127.0.0.1',
     dialect: 'postgres',
   },
   test: {
     username: 'postgres',
-    password: null,
-    database: 'pengin_test',
+    password: 'admin',
+    database: 'hem_test',
     host: '127.0.0.1',
     dialect: 'postgres',
     logging: false,

@@ -40,13 +40,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       hooks: {
-        beforeCreate: (user) => {
+        beforeCreate: user => {
           user.password = hashPassword(user.password);
         },
       },
-    },
+    }
   );
-  User.associate = (models) => {
+  User.associate = models => {
     const { UserSecretToken, Workspace } = models;
     User.hasOne(UserSecretToken, {
       foreignKey: 'userId',

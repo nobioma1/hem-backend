@@ -34,7 +34,7 @@ const loginUser = async (req, res) => {
     const token = await generateToken(user.id, user.email);
     return res
       .status(200)
-      .json({ message: `Welcome, ${user.firstname}`, token });
+      .json({ name: `${user.lastname}, ${user.firstname}`, token });
   }
   return res.status(400).json({ error: 'Invalid Username or Password' });
 };
@@ -60,7 +60,7 @@ const resendVerification = async (req, res) => {
     const confirmCode = secretToken();
     const [updated] = await UserSecretToken.update(
       { token: confirmCode },
-      { where: { userId: authUser.id } },
+      { where: { userId: authUser.id } }
     );
 
     if (updated) {

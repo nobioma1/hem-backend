@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
-    {},
+    {}
   );
-  Workspaces.associate = (models) => {
+  Workspaces.associate = models => {
     const { User } = models;
     Workspaces.belongsTo(User, {
       foreignKey: 'createdBy',

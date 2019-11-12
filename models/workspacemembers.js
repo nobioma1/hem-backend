@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
     },
-    {},
+    {}
   );
-  WorkspaceMembers.associate = (models) => {
+  WorkspaceMembers.associate = models => {
     const { User, Workspace } = models;
     WorkspaceMembers.belongsTo(Workspace, {
       foreignKey: 'workspaceId',

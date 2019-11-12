@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.UUID,
       token: DataTypes.STRING,
     },
-    {},
+    {}
   );
-  UserSecretToken.associate = (models) => {
+  UserSecretToken.associate = models => {
     const { User } = models;
     UserSecretToken.belongsTo(User, {
       foreignKey: 'userId',

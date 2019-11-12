@@ -9,34 +9,34 @@ userRouter.post(
   '/register',
   validate(schema.register),
   userMiddleware.userExists,
-  user.createUser,
+  user.createUser
 );
 
 userRouter.get(
   '/profile/:id',
   authUser,
   userMiddleware.validateId,
-  user.getUser,
+  user.getUser
 );
 
 userRouter.post(
   '/login',
   validate(schema.login),
   userMiddleware.validateEmail,
-  user.loginUser,
+  user.loginUser
 );
 userRouter.post(
   '/verify',
   authUser,
   validate(schema.token),
   userMiddleware.tokenExists,
-  user.verifyUser,
+  user.verifyUser
 );
 userRouter.post(
   '/resend-verification',
   authUser,
   userMiddleware.checkStatus,
-  user.resendVerification,
+  user.resendVerification
 );
 
 module.exports = userRouter;

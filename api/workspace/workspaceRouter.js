@@ -8,23 +8,23 @@ workspaceRouter.post(
   '/',
   workspaceMiddleware.workspaceExists,
   validate(workspaceBody),
-  workspace.createWorkspace,
+  workspace.createWorkspace
 );
 workspaceRouter.get(
   '/:name',
   workspaceMiddleware.validateWorkspace,
-  workspace.getWorkspace,
+  workspace.getWorkspace
 );
 workspaceRouter.put(
   '/:id',
   workspaceMiddleware.validateWorkspace,
   validate(workspaceBody),
-  workspace.updateWorkspace,
+  workspace.updateWorkspace
 );
 workspaceRouter.delete(
   '/:id',
   workspaceMiddleware.validateWorkspace,
-  workspace.removeWorkspace,
+  workspace.removeWorkspace
 );
 
 module.exports = workspaceRouter;

@@ -14,7 +14,7 @@ const testUser = {
 };
 
 describe('Users', () => {
-  it('Should Validate Request body', async (done) => {
+  it('Should Validate Request body', async done => {
     const res = await request.post('/api/v1/register');
     expect(res.status).toBe(422);
     expect(res.body.error).toBeInstanceOf(Array);
@@ -22,25 +22,25 @@ describe('Users', () => {
     done();
   });
 
-  it('Should Validate password Length to be 5', async (done) => {
+  it('Should Validate password Length to be 5', async done => {
     const res = await request
       .post('/api/v1/register')
       .send({ ...testUser, password: 'test' });
     expect(res.status).toBe(422);
     expect(res.body).toHaveProperty('error');
     expect(res.body.error[0]).toEqual(
-      'password length must be at least 5 characters long',
+      'password length must be at least 5 characters long'
     );
     done();
   });
 
-  it('Should Create a User', async (done) => {
+  it('Should Create a User', async done => {
     const res = await request.post('/api/v1/register').send(testUser);
     const details = await verifyToken(res.body.token);
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
-      `Welcome, ${testUser.firstname}, Please check email to verify account`,
+      `Welcome, ${testUser.firstname}, Please check email to verify account`
     );
     expect(res.body).toHaveProperty('token');
     expect(details).toHaveProperty('id');
@@ -48,7 +48,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should get User profile', async (done) => {
+  it('Should get User profile', async done => {
     const { email, password } = testUser;
     const { body } = await request
       .post('/api/v1/login')
@@ -65,7 +65,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should get return error if user does not exist', async (done) => {
+  it('Should get return error if user does not exist', async done => {
     const { email, password } = testUser;
     const { body } = await request
       .post('/api/v1/login')
@@ -78,7 +78,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should Validate User Already Exists', async (done) => {
+  it('Should Validate User Already Exists', async done => {
     await request.post('/api/v1/register').send(testUser);
     const res = await request.post('/api/v1/register').send(testUser);
     expect(res.status).toBe(400);
@@ -86,7 +86,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should Login existing User', async (done) => {
+  it('Should Login existing User', async done => {
     const { email, password } = testUser;
     const res = await request.post('/api/v1/login').send({ email, password });
     const details = verifyToken(res.body.token);
@@ -96,7 +96,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should Validate wrong email on login', async (done) => {
+  it('Should Validate wrong email on login', async done => {
     const { password } = testUser;
     const res = await request
       .post('/api/v1/login')
@@ -106,7 +106,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should Validate User Password', async (done) => {
+  it('Should Validate User Password', async done => {
     const { email } = testUser;
     const res = await request
       .post('/api/v1/login')
@@ -116,7 +116,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should return error trying to verify account with wrong code', async (done) => {
+  it('Should return error trying to verify account with wrong code', async done => {
     const { email, password } = testUser;
     const { body } = await request
       .post('/api/v1/login')
@@ -130,7 +130,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should resend verification', async (done) => {
+  it('Should resend verification', async done => {
     const { email, password } = testUser;
     const { body } = await request
       .post('/api/v1/login')
@@ -143,7 +143,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should Verify user using code to activate account', async (done) => {
+  it('Should Verify user using code to activate account', async done => {
     const { email, password } = testUser;
     const { body } = await request
       .post('/api/v1/login')
@@ -161,7 +161,7 @@ describe('Users', () => {
     done();
   });
 
-  it('Should check if user is already active', async (done) => {
+  it('Should check if user is already active', async done => {
     const { email, password } = testUser;
     const { body } = await request
       .post('/api/v1/login')
