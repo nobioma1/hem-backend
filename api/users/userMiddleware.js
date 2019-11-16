@@ -35,7 +35,6 @@ module.exports = {
     }
     return res.status(400).json({ error: 'Invalid Token' });
   },
-
   checkStatus: async (req, res, next) => {
     const { id } = req.authUser;
     const { isActive } = await User.findOne({ where: { id } });
@@ -44,5 +43,12 @@ module.exports = {
       return next();
     }
     return res.status(400).json({ error: 'User Account is already active' });
+  },
+  validatePassword: async (req, res, next) => {
+    const { password, confirmPassword } = req.body    
+    if (password === confirmPassword) {
+      return next();
+    }
+    return res.status(400).json({ error: 'Passwords do not match' });
   },
 };
