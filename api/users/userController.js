@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
     const { id, email, firstname } = await User.create({ ...req.body });
     const confirmCode = secretToken();
     await UserSecretToken.create({ userId: id, token: confirmCode });
-    await sendMail(email, confirmCode);
+    // await sendMail(email, confirmCode);
     const token = generateToken(id, email);
     return res.status(201).json({
       message: `Welcome, ${firstname}, Please check email to verify account`,
@@ -27,14 +27,21 @@ const getUser = async (req, res) => {
   return res.status(200).json(user);
 };
 
+const getProfile = async (req, res) => {
+  const { authUser } = req;
+  const user = await User.findOne({ where: { id: authUser.id } });
+  if (user) {
+    delete user.dataValues.password;
+    return res.status(200).json(user);
+  }
+};
+
 const loginUser = async (req, res) => {
   const { body, user } = req;
   const isValid = await compareHashPassword(body.password, user.password);
   if (isValid) {
     const token = await generateToken(user.id, user.email);
-    return res
-      .status(200)
-      .json({ name: `${user.lastname}, ${user.firstname}`, token });
+    return res.status(200).json({ token });
   }
   return res.status(400).json({ error: 'Invalid Username or Password' });
 };
@@ -81,4 +88,5 @@ module.exports = {
   verifyUser,
   resendVerification,
   getUser,
+  getProfile
 };
