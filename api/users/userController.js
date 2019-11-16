@@ -29,7 +29,11 @@ const getUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
   const { authUser } = req;
-  const user = await User.findOne({ where: { id: authUser.id } });
+  const user = await User.findOne({
+    where: { id: authUser.id },
+    include: ['workspaces'],
+  });
+
   if (user) {
     delete user.dataValues.password;
     return res.status(200).json(user);
@@ -88,5 +92,5 @@ module.exports = {
   verifyUser,
   resendVerification,
   getUser,
-  getProfile
+  getProfile,
 };

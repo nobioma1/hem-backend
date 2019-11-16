@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     User.hasMany(Workspace, {
       foreignKey: 'createdBy',
-      as: 'workspace',
+      as: 'workspaces',
     });
   };
   return User;
