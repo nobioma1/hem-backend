@@ -10,6 +10,8 @@ module.exports = {
     password: Joi.string()
       .min(5)
       .required(),
+    confirmPassword: Joi.string()
+      .required(),
     profileURL: Joi.string().allow(''),
   }),
   login: Joi.object().keys({
