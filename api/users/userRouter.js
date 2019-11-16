@@ -8,9 +8,12 @@ const { authUser } = require('../auth/authMiddleware');
 userRouter.post(
   '/register',
   validate(schema.register),
+  userMiddleware.validatePassword,
   userMiddleware.userExists,
   user.createUser
 );
+
+userRouter.get('/profile', authUser, user.getProfile);
 
 userRouter.get(
   '/profile/:id',
