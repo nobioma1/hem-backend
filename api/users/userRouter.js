@@ -28,6 +28,7 @@ userRouter.post(
   userMiddleware.validateEmail,
   user.loginUser
 );
+
 userRouter.post(
   '/verify',
   authUser,
@@ -35,6 +36,7 @@ userRouter.post(
   userMiddleware.tokenExists,
   user.verifyUser
 );
+
 userRouter.post(
   '/resend-verification',
   authUser,
